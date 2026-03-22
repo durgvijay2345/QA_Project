@@ -32,6 +32,6 @@ app.post('/query', async (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log('✅ Node.js running on http://localhost:3000');
+    console.log(' Node.js running on http://localhost:3000');
 });
 
