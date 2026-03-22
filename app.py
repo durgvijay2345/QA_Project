@@ -17,8 +17,8 @@ def ask():
 
 @app.route("/health", methods=["GET"])
 def health():
-    return jsonify({"status": "Flask running ✅"})
+    return jsonify({"status": "Flask running"})
 
 if __name__ == "__main__":
-    print("✅ Flask API running on http://localhost:5000")
+    print("Flask API running on http://localhost:5000")
     app.run(port=5000, debug=True)
