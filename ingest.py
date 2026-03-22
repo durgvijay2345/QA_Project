@@ -6,10 +6,10 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 
 def ingest_pdf(pdf_path):
-    print(f"📄 PDF load ho raha hai: {pdf_path}")
+    print(f"PDF load ho raha hai: {pdf_path}")
     loader = PyPDFLoader(pdf_path)
     documents = loader.load()
-    print(f"✅ {len(documents)} pages load hue")
+    print(f" {len(documents)} pages load hue")
 
     # Chunks banao
     splitter = RecursiveCharacterTextSplitter(
@@ -17,7 +17,7 @@ def ingest_pdf(pdf_path):
         chunk_overlap=50
     )
     chunks = splitter.split_documents(documents)
-    print(f"✅ {len(chunks)} chunks bane")
+    print(f" {len(chunks)} chunks bane")
 
     # FREE HuggingFace embeddings — pehli baar ~90MB download hoga
     print("⏳ Embeddings model load ho raha hai (pehli baar time lagega)...")
@@ -26,11 +26,11 @@ def ingest_pdf(pdf_path):
     )
 
     # FAISS vector store
-    print("⏳ Vector store ban raha hai...")
+    print(" Vector store ban raha hai...")
     vectorstore = FAISS.from_documents(chunks, embeddings)
     os.makedirs("vector_store", exist_ok=True)
     vectorstore.save_local("vector_store")
-    print("✅ Vector store ready! Ab qa_chain.py chalao.")
+    print(" Vector store ready! Ab qa_chain.py chalao.")
 
 if __name__ == "__main__":
     ingest_pdf("data/sample.pdf")
